@@ -4,14 +4,17 @@ from selenium.webdriver.common.by import By
 import time
 import requests
 from bs4 import BeautifulSoup
+import json
 
 maimaiDX = "https://maimaidx-eng.com/maimai-mobile/home/ratingTargetMusic/"
-Sega = "https://lng-tgk-aime-gw.am-all.net/common_auth/login?site_id=maimaidxex&redirect_url=https://maimaidx-eng.com/maimai-mobile/&back_url=https://maimai.sega.com/"
+sega = "https://lng-tgk-aime-gw.am-all.net/common_auth/login?site_id=maimaidxex&redirect_url=https://maimaidx-eng.com/maimai-mobile/&back_url=https://maimai.sega.com/"
+songData = ""
+
 SEGA_ID = "felixno7"
 PASSWORD = "2xdugajr"
 
 driver = webdriver.Chrome()
-driver.get(Sega)
+driver.get(sega)
 
 driver.find_element(By.CLASS_NAME,"c-button--openid--segaId").click()
 time.sleep(1)
@@ -45,6 +48,11 @@ print("\nb35:")
 for info in b35:
     print(info)
 
+with open("lv.json","rb") as f:
+    lv = json.load(f)
+
+print(lv["snooze"])
+print(lv["snooze"]["13+"])
 
 time.sleep(1)
 
